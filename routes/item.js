@@ -2,7 +2,10 @@ var express = require('express');
 var router = express.Router();
 var ItemController = require('../controllers/itemController')
 
-
+let childType = {
+    retweet: "retweet",
+    reply: "reply"
+}
 
 
 /* GET users listing. */
