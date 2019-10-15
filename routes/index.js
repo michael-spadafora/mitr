@@ -1,8 +1,6 @@
 var express = require('express');
 var UserController = require('../controllers/userController')
 var mail = require('../controllers/mailController')
-var GameController = require('../controllers/gameController')
-var Game = require('../objects/game')
 
 var MongoClient = require('mongodb').MongoClient
 var router = express.Router();

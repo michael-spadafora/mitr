@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var itemController = require('../')
+var ItemController = require('../controllers/itemController')
+
+
+
 
 /* GET users listing. */
 router.get('/:id', function(req, res, next) {
-    
-    res.send('respond with a resource');
+    res.send(req.id);
 });
+
+router.post('/additem', async function(req, res, next) {
+    let content = req.body.content
+    let childType = req.body.childType
+
+})

@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var userController = require('../controllers/userController')
+var UserController = require('../controllers/userController')
+
+let userController = new UserController()
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -35,11 +37,7 @@ router.post('/adduser', async function(req,res,next) {
       console.log(ex)
     }
 
-    //e-mail
   }
-
-  //TODO: 
-  //send email w key
 })
 
 router.post('/verify', async function(req,res) {
