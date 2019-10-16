@@ -9,6 +9,8 @@ let childType = {
     reply: "reply"
 }
 
+let itemController = new ItemController()
+
 
 /* GET users listing. */
 router.get('/item', function(req, res, next) {
@@ -27,6 +29,9 @@ router.post('/additem', async function(req, res, next) {
     else {
         let content = req.body.content
         let childType = req.body.childType
+        let username = req.session.user
+        let re = await itemController.addItem(content, childType, username)
+        res.send(re)
     }
 })
 

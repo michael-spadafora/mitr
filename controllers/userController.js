@@ -1,8 +1,12 @@
 var MongoClient = require('mongodb').MongoClient;
+var constants = require('../constants')
+var mongoUrl = constants.mongo_url
+var dbName = constants.db_name
+var collectionName = constants.collections.users
 
 class UserController {
     constructor () {
-        this.url = "mongodb://localhost:27017/";
+        this.url = mongoUrl;
     }
 
     async insertUnverifiedUser(userInfo) {
@@ -13,7 +17,7 @@ class UserController {
 
         let db = await MongoClient.connect(this.url)
             
-        let dbo = db.db('ttt')
+        let dbo = db.db(dbName)
         let coll = dbo.collection('users')
 
         //check if username already in use
@@ -34,7 +38,7 @@ class UserController {
         let db = await MongoClient.connect(this.url)
 
         
-        let dbo = db.db('ttt')
+        let dbo = db.db(dbName)
         let coll = dbo.collection('users')
         let query = { email: email } 
         var newvalues = { $set: {verified: true } };

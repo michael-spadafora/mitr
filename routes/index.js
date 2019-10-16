@@ -37,8 +37,4 @@ router.post('/search', function(req, res, next) {
 
 
 
-
-
-
-
 module.exports = router;

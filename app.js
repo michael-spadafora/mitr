@@ -24,6 +24,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   key: 'user_sid',
   secret: 'keyboard cat',
+  resave: true,
+  saveUninitialized: true,
   cookie: {
     expires: 600000
   },
