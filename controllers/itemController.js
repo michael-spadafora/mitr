@@ -78,7 +78,7 @@ class ItemController {
         let pointer = await coll.find(query).limit(limit).toArray()
 
         if (!pointer) {
-            return {status: "ERROR", message: "not found" }
+            return {status: status.error, message: "not found" }
         }
 
         return pointer                
