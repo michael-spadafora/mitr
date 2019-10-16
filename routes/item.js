@@ -13,12 +13,14 @@ let itemController = new ItemController()
 
 
 /* GET users listing. */
-router.get('/item', function(req, res, next) {
+router.get('/item', async function(req, res, next) {
     if (!req.session.user) {
         res.redirect('/login')
     }
     else {
-        res.send(req.query.id);
+        let id = req.query.id
+        let item = await itemController.getItem(id)
+        res.send(item)
     }
 });
 

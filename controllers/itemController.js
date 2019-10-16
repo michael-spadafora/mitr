@@ -44,7 +44,7 @@ class ItemController {
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
         let oid = new mongo.ObjectId(id)
-        let query = { id: oid } 
+        let query = { _id: oid } 
 
         let pointer = await coll.findOne(query)
 
