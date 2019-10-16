@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var UserController = require('../controllers/userController')
+var mail = require('../controllers/mailController')
 
 let userController = new UserController()
 
