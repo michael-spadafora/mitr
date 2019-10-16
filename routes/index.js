@@ -1,6 +1,5 @@
 var express = require('express');
 var UserController = require('../controllers/userController')
-var mail = require('../controllers/mailController')
 
 var MongoClient = require('mongodb').MongoClient
 var router = express.Router();
@@ -15,6 +14,9 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+router.get('/login', function(req, res, next) {
+  res.render('login', { title: 'Express' });  
+})
 
 router.post('/search', function(req, res, next) {
   //get timestamp and limit

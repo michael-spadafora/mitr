@@ -9,12 +9,23 @@ let childType = {
 
 
 /* GET users listing. */
-router.get('/:id', function(req, res, next) {
-    res.send(req.id);
+router.get('/item', function(req, res, next) {
+    if (!req.session.user) {
+        res.redirect('/login')
+    }
+    else {
+        res.send(req.query.id);
+    }
 });
 
 router.post('/additem', async function(req, res, next) {
-    let content = req.body.content
-    let childType = req.body.childType
-
+    if (!req.session.user) {
+        res.redirect('/login')
+    }
+    else {
+        let content = req.body.content
+        let childType = req.body.childType
+    }
 })
+
+module.exports = router;

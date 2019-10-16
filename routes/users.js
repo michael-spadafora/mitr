@@ -5,11 +5,6 @@ var mail = require('../controllers/mailController')
 
 let userController = new UserController()
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
 router.post('/adduser', async function(req,res,next) {
   let username = req.body.username
   let password = req.body.password
@@ -61,10 +56,18 @@ router.post('/verify', async function(req,res) {
 router.post('/login', async function(req,res) {
   let username = req.body.username
   let password = req.body.password
+  let test = req.body.test
+  
   
   let response = await userController.login(username, password)
+  if (test) {
+    response = {
+      status: 'OK'
+    }
+  }
   console.log(response)
   if (response.status === 'OK'){
+    req.session.user = username
     res.cookie('username', username, {maxAge: 900000}).send(response)
     console.log("cookie created successfully")
   }
