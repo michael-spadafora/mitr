@@ -2,8 +2,12 @@ var express = require('express');
 var router = express.Router();
 var UserController = require('../controllers/userController')
 var mail = require('../controllers/mailController')
+var constants = require('../constants')
+var status = constants.status
 
 let userController = new UserController()
+
+
 
 router.post('/adduser', async function(req,res,next) {
   let username = req.body.username
@@ -62,11 +66,11 @@ router.post('/login', async function(req,res) {
   let response = await userController.login(username, password)
   if (test) {
     response = {
-      status: 'OK'
+      status: status.ok
     }
   }
   console.log(response)
-  if (response.status === 'OK'){
+  if (response.status === status.ok){
     req.session.user = username
     res.cookie('username', username, {maxAge: 900000}).send(response)
     console.log("cookie created successfully")
@@ -83,7 +87,7 @@ router.post('/logout', function(req,res) {
         }    
         res.cookie(prop, '', {expires: new Date(0)});
     }
-    res.send({status: "OK"});
+    res.send({status: status.ok});
 })
 
 module.exports = router;

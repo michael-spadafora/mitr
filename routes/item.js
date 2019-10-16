@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var ItemController = require('../controllers/itemController')
+var constants = require('../constants')
+var status = constants.status
 
 let childType = {
     retweet: "retweet",
