@@ -37,4 +37,24 @@ router.post('/additem', async function(req, res, next) {
     }
 })
 
+router.post('/search', async function(req, res, next) {
+    //get timestamp and limit
+    let timestamp = req.body.timestamp
+    let limit = req.body.limit
+  
+    if (!timestamp) {
+      timestamp = Math.floor(new Date() / 1000)    
+    }
+    if (!limit) {
+      limit = 25
+    }
+    if (limit > 100) {
+      limit = 100
+    }
+    let re = await itemController.search(timestamp,limit)
+
+    res.send(re)
+  });
+  
+
 module.exports = router;

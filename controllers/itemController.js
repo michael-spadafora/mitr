@@ -43,6 +43,7 @@ class ItemController {
 
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
+
         let oid = new mongo.ObjectId(id)
         let query = { _id: oid } 
 
@@ -62,28 +63,25 @@ class ItemController {
         }
     }
 
-    async login(username, password) {
-        var re = ""
-        let db
-        db = await MongoClient.connect(this.url)
+    async search(timestamp, limit) {
+        let db = await MongoClient.connect(this.url)
             
         let dbo = db.db(dbName)
-        let coll = dbo.collection('users')
-        let query = {username : username}
+        let coll = dbo.collection(collectionName)
+        
+        //edit this query to do less than
+        let query = {
+            timestamp: {
+                $lte: timestamp
+        }}
 
-        let pointer = await coll.findOne(query)
+        let pointer = await coll.find(query).limit(limit).toArray()
 
         if (!pointer) {
-            return {status: "ERROR", message: "incorrect password" }
+            return {status: "ERROR", message: "not found" }
         }
 
-
-        if (!pointer.verified) return {status: "ERROR", message: "unverified user"}
-            else if (pointer.password !== password) {
-                return {status: "ERROR", message: "incorrect password" }
-            }
-            else return {status: "OK", message: "Logged in successfully"}
-                
+        return pointer                
     }
    
 }
