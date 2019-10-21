@@ -26,7 +26,7 @@ router.get('/item/:id', async function(req, res, next) {
         console.log(res.item.username)
 
 
-        res.send(item)
+        res.send(res)
     }
 });
 

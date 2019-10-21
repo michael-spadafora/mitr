@@ -69,7 +69,7 @@ class ItemController {
             console.log(pointer)
 
             let re = {
-                id: pointer.id,
+                id: pointer._id,
                 username: pointer.username,
                 timestamp: pointer.timestamp,
                 property: pointer.property,
