@@ -20,13 +20,13 @@ router.get('/item/:id', async function(req, res, next) {
     }
     else {
         let id = req.params.id
-        let res = await itemController.getItem(id)
-        console.log(res.item.id)
-        console.log(res.item.content)
-        console.log(res.item.username)
+        let re = await itemController.getItem(id)
+        console.log(re.item.id)
+        console.log(re.item.content)
+        console.log(re.item.username)
 
 
-        res.send(res)
+        res.send(re)
     }
 });
 
