@@ -21,6 +21,11 @@ router.get('/item/:id', async function(req, res, next) {
     else {
         let id = req.params.id
         let item = await itemController.getItem(id)
+        console.log(item.id)
+        console.log(item.username)
+        console.log(item.content)
+
+
         res.send(item)
     }
 });
