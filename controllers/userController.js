@@ -78,7 +78,7 @@ class UserController {
         let db
         db = await MongoClient.connect(this.url)
             
-        let dbo = db.db('ttt')
+        let dbo = db.db(dbName)
         let coll = dbo.collection('users')
         let query = {username : username}
 
