@@ -101,7 +101,7 @@ class ItemController {
             return {status: status.error, error: "not found" }
         }
 
-        return pointer                
+        return {status: status.ok, items: pointer }
     }
    
 }
