@@ -26,11 +26,11 @@ class ItemController {
         let item = newItem(content,childType,username)
         try {
             var res = await coll.insertOne(item)   
-            console.log ("post id: " + res)
+            console.log ("post id: " + res.insertedId)
 
             return {
                 status: status.ok,
-                id: res._id
+                id: res.insertedId
             }
         } catch(e) {
             return {
