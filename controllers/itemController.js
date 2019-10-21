@@ -66,9 +66,17 @@ class ItemController {
             }
         }
         else {
+            let re = {
+                id: pointer.id,
+                username: pointer.username,
+                timestamp: pointer.timestamp,
+                property: pointer.property,
+                retweeted: pointer.retweeted,
+                content: pointer.content
+            }
             return {
                 status: status.ok,
-                item: pointer
+                item: re
             }
         }
     }
