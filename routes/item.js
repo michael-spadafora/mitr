@@ -14,6 +14,7 @@ let itemController = new ItemController()
 
 /* GET users listing. */
 router.get('/item', async function(req, res, next) {
+    console.log("item query: " + req.query.id)
     if (!req.session.user) {
         res.redirect('/login')
     }
