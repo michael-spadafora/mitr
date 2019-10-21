@@ -4,6 +4,8 @@ var mongoUrl = constants.mongo_url
 var dbName = constants.db_name
 var collectionName = constants.collections.users
 
+var status = constants.status
+
 
 class UserController {
     constructor () {
@@ -66,7 +68,7 @@ class UserController {
         }
         else {
             console.log("invalid key")
-            return {status: "error", error: "invalid key"}
+            return {status: status.error, error: "invalid key"}
         }
         
     }
@@ -83,15 +85,17 @@ class UserController {
         let pointer = await coll.findOne(query)
 
         if (!pointer) {
-            return {status: "error", error: "incorrect password" }
+            return {status: status.error, error: "incorrect password" }
         }
 
 
-        if (!pointer.verified) return {status: "ERROR", message: "unverified user"}
+        if (!pointer.verified) return {status: status.error, message: "unverified user"}
+
+            console.log("stored password:" + pointer.password + "entered:" + password)
             else if (pointer.password !== password) {
-                return {status: "error", error: "incorrect password" }
+                return {status: status.error, error: "incorrect password" }
             }
-            else return {status: "OK", error: "Logged in successfully"}
+            else return {status: status.ok, error: "Logged in successfully"}
                 
     }
    
