@@ -33,6 +33,7 @@ router.post('/additem', async function(req, res, next) {
         let childType = req.body.childType
         let username = req.session.user
         let re = await itemController.addItem(content, childType, username)
+        console.log("add item response: " + re)
         res.send(re)
     }
 })
