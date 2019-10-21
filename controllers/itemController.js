@@ -30,7 +30,7 @@ class ItemController {
 
             return {
                 status: status.ok,
-                id: res.insertedId
+                id: res._id
             }
         } catch(e) {
             return {
