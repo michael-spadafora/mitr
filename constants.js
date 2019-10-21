@@ -1,6 +1,6 @@
 status = {
-    ok: 200,
-    error: 500
+    ok: "OK",
+    error: "error"
 }
 
 mongo_url = "mongodb://localhost:27017/"
