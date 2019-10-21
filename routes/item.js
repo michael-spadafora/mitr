@@ -20,10 +20,10 @@ router.get('/item/:id', async function(req, res, next) {
     }
     else {
         let id = req.params.id
-        let item = await itemController.getItem(id)
-        console.log(item.id)
-        console.log(item.username)
-        console.log(item.content)
+        let res = await itemController.getItem(id)
+        console.log(res.item.id)
+        console.log(res.item.content)
+        console.log(res.item.username)
 
 
         res.send(item)

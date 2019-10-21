@@ -67,7 +67,7 @@ class ItemController {
         }
         else {
             console.log(pointer)
-            
+
             let re = {
                 id: pointer.id,
                 username: pointer.username,
