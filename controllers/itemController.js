@@ -19,6 +19,14 @@ class ItemController {
 
     async addItem(content, childType, username) {
         // generate key here            
+
+        if (!content) {
+            return {
+                status: status.error,
+                error: "no content provided"
+            }
+        }
+
         let db = await MongoClient.connect(this.url)
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
