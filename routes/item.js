@@ -26,6 +26,7 @@ router.get('/item', async function(req, res, next) {
 
 router.post('/additem', async function(req, res, next) {
     if (!req.session.user) {
+        console.log("add item failed due to lack of session")
         res.redirect('/login')
     }
     else {
@@ -33,7 +34,7 @@ router.post('/additem', async function(req, res, next) {
         let childType = req.body.childType
         let username = req.session.user
         let re = await itemController.addItem(content, childType, username)
-        console.log("add item response: " + re)
+        console.log("add item response: " + re.id + ", " + re.status)
         res.send(re)
     }
 })
