@@ -88,14 +88,15 @@ class UserController {
             return {status: status.error, error: "incorrect password" }
         }
 
+        console.log("stored password:" + pointer.password + "entered:" + password)
+
 
         if (!pointer.verified) return {status: status.error, message: "unverified user"}
 
-            console.log("stored password:" + pointer.password + "entered:" + password)
-            else if (pointer.password !== password) {
-                return {status: status.error, error: "incorrect password" }
-            }
-            else return {status: status.ok, error: "Logged in successfully"}
+        else if (pointer.password !== password) {
+            return {status: status.error, error: "incorrect password" }
+        }
+        else return {status: status.ok, error: "Logged in successfully"}
                 
     }
    
