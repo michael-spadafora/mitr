@@ -33,7 +33,7 @@ class ItemController {
         } catch(e) {
             return {
                 status: status.error,
-                message: "error adding item"
+                error: "error adding item"
             }
         }
     }
@@ -52,7 +52,7 @@ class ItemController {
         if (!pointer) {
             return {
                 status: status.error,
-                message: "Item not found"
+                error: "Item not found"
             }
         }
         else {
@@ -78,7 +78,7 @@ class ItemController {
         let pointer = await coll.find(query).limit(limit).toArray()
 
         if (!pointer) {
-            return {status: status.error, message: "not found" }
+            return {status: status.error, error: "not found" }
         }
 
         return pointer                
