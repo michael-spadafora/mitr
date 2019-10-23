@@ -20,7 +20,7 @@ export default class Login extends Component {
     
     onSubmit = (event) => {
         event.preventDefault();
-        let url = 'http://130.245.168.201/api/adduser'
+        let url = 'http://130.245.168.201/api/login'
 
         axios.post(url, 
         {
