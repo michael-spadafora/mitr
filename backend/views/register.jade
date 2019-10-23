@@ -2,11 +2,13 @@ extends layout
 
 block content
     h1= title
-    form(name="name", method="post", action='/login')
+    form(name="name", method="post", action='/register')
         div.input
             span.label Username:
             input(type="text", name="username") 
             br
             span.label Password:
             input(type="text", name="password")
+            br
+            span.label E-mail:
             input(type="submit", value="Enter")

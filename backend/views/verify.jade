@@ -1,0 +1,13 @@
+extends layout
+
+block content
+    h1= title
+    form(name="name", method="post", action='/verify')
+        div.input
+            span.label Username:
+            input(type="text", name="username") 
+            br
+            span.label Key:
+            input(type="text", name="key")
+            input(type="submit", value="Enter")
+            br

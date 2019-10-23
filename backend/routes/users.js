@@ -72,6 +72,7 @@ router.post('/login', async function(req,res) {
   console.log(response)
   if (response.status === status.ok){
     req.session.user = username
+    res.location('/index')
     res.cookie('username', username, {maxAge: 900000}).send(response)
     console.log("cookie created successfully")
   }

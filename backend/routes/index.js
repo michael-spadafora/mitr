@@ -18,6 +18,13 @@ router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Express' });  
 })
 
+router.get('/register', function(req, res, next) {
+  res.render('register', { title: 'Register' });  
+})
+
+router.get('/verify', function(req, res, next) {
+  res.render('verify', { title: 'Verify Account' });  
+})
 
 
 
