@@ -15,10 +15,11 @@ let itemController = new ItemController()
 /* GET users listing. */
 router.get('/item/:id', async function(req, res, next) {
     console.log("item query: " + req.params.id)
-    if (!req.session.user) {
-        res.redirect('/login')
-    }
-    else {
+    // if (!req.session.user) {
+    //   console.log("not logged in")
+    //     res.redirect('/login')
+    // }
+    // else {
         let id = req.params.id
         let re = await itemController.getItem(id)
         console.log(re.item.id)
@@ -27,28 +28,34 @@ router.get('/item/:id', async function(req, res, next) {
 
 
         res.send(re)
-    }
+    // }
 });
 
 router.post('/additem', async function(req, res, next) {
-    if (!req.session.user) {
-        console.log("add item failed due to lack of session")
-        res.redirect('/login')
-    }
-    else {
+    // if (!req.session.user) {
+    //     console.log("add item failed due to lack of session")
+    //     res.redirect('/login')
+    // }
+    // else {
+        console.log("post by " + req.cookies.username)
         let content = req.body.content
         let childType = req.body.childType
-        let username = req.session.user
+        let username = req.cookies.username
+
         let re = await itemController.addItem(content, childType, username)
         console.log("add item response: " + re.id + ", " + re.status)
         res.send(re)
-    }
+    // }
 })
 
 router.post('/search', async function(req, res, next) {
     //get timestamp and limit
     let timestamp = req.body.timestamp
     let limit = req.body.limit
+
+    console.log(timestamp)
+    console.log(limit)
+
   
     if (!timestamp) {
       timestamp = Math.floor(new Date() / 1000)    
@@ -59,7 +66,9 @@ router.post('/search', async function(req, res, next) {
     if (limit > 100) {
       limit = 100
     }
+    
     let re = await itemController.search(timestamp,limit)
+    console.log('items:' + re.items[0])
 
     res.send(re)
   });
