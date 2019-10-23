@@ -32,11 +32,11 @@ router.get('/item/:id', async function(req, res, next) {
 });
 
 router.post('/additem', async function(req, res, next) {
-    // if (!req.session.user) {
-    //     console.log("add item failed due to lack of session")
-    //     res.redirect('/login')
-    // }
-    // else {
+    if (!req.cookies.username) {
+        console.log("add item failed due to lack of session")
+        res.redirect('/login')
+    }
+    else {
         console.log("post by " + req.cookies.username)
         let content = req.body.content
         let childType = req.body.childType
