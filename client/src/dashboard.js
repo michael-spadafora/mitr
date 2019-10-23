@@ -29,7 +29,7 @@ export default class Dashboard extends Component {
     findOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
-      axios.get('http://130.245.168.201/api//item/' + this.state.id, 
+      axios.get('http://130.245.168.201/api/item/' + this.state.id, 
       {   withCredentials: true,
           headers: {
               'Content-Type': 'application/json'
