@@ -192,7 +192,7 @@ export default class Dashboard extends Component {
             <input type="submit" value="Submit"/>
           </form>
 
-            <form onSubmit={this.findOne}>
+            <form onSubmit={this.logout}>
               <h1>logout</h1>
               <input type="submit" value="Submit"/>
             </form>
