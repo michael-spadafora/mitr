@@ -55,7 +55,7 @@ export default class Dashboard extends Component {
 
     search = (event) => {
         event.preventDefault();
-        axios.post(baseURL + '/search', 
+        axios.post('http://130.245.168.201/api/search', 
         {
             //search
             withCredentials: true,
