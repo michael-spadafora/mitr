@@ -51,7 +51,7 @@ class UserController {
         console.log("pointer: " + pointer)
 
         
-        if (!pointer.key) {
+        if (!pointer) {
             return {status: "error", error: "user not found"}
 
         }
@@ -63,7 +63,7 @@ class UserController {
             await coll.updateOne(query, newvalues)
             console.log("verified user")   
             db.close()
-            return {status: "OK"}
+            return {status: status.ok, message: "you may now log in"}
             
         }
         else {

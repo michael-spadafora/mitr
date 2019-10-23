@@ -1,7 +1,9 @@
 extends layout
 
 block content
-    h1= title
+    h1="Login"
+    h2=message
+    h2=error
     form(name="name", method="post", action='/login')
         div.input
             span.label Username:
@@ -15,4 +17,4 @@ block content
         a(href="register")
             button(type="register") register
         a(href="verify")
-            button(type="verify") register
+            button(type="verify") verify

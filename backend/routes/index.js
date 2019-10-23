@@ -11,7 +11,17 @@ var url = "mongodb://localhost:27017/";
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  if (!req.session.user) {
+    res.redirect('/login')
+  }
+  
+  else {
+    let context = {
+      user: req.session.user
+    }
+    console.log(context)
+    res.render('index', context)
+  }
 });
 
 router.get('/login', function(req, res, next) {

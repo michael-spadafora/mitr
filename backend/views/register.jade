@@ -1,8 +1,9 @@
 extends layout
 
 block content
-    h1= title
-    form(name="name", method="post", action='/register')
+    h1='Register'
+    h2=error
+    form(name="name", method="post", action='/adduser')
         div.input
             span.label Username:
             input(type="text", name="username") 
@@ -11,4 +12,5 @@ block content
             input(type="text", name="password")
             br
             span.label E-mail:
+            input(type="text", name="email")
             input(type="submit", value="Enter")

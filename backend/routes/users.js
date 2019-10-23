@@ -22,16 +22,14 @@ router.post('/adduser', async function(req,res,next) {
 
   let key = await userController.insertUnverifiedUser(obj)
   if (!key) {
-    let re = {status: "ERROR", message: "username already in use"}
-    res.send(re)
+    let re = {status: "ERROR", error: "username already in use"}
+    res.render('register', re)
   }
   else {
     try {
      await mail(email, key)
-     let re = {status: "OK", message: "please check your email"}
-
-      res.send(re)
-
+     let re = {status: "OK", message: "please check your email for registration key"}
+      res.render('verify', re)
     }
     catch(ex) {
       console.log(ex)
@@ -52,9 +50,12 @@ router.post('/verify', async function(req,res) {
 
   console.log(verifyMessage)
 
-  res.send(verifyMessage)
-
-  //TODO: print out success message
+  if (verifyMessage.status === status.ok) {
+    res.render('login', verifyMessage)
+  }
+  else {
+    res.render('verify', verifyMessage)
+  }
 })
 
 router.post('/login', async function(req,res) {
@@ -72,12 +73,19 @@ router.post('/login', async function(req,res) {
   console.log(response)
   if (response.status === status.ok){
     req.session.user = username
-    res.location('/index')
-    res.cookie('username', username, {maxAge: 900000}).send(response)
-    console.log("cookie created successfully")
+    res.cookie('username', username, {maxAge: 900000})
+    res.status = response.status
+    res.statusMessage = response.message
+    res.render('index', response)
   }
 
-  else res.send(response)
+
+  else {
+    res.status = response.status
+    res.statusMessage = response.error
+    res.error = response.error
+    res.render('login', response)
+  }
 })
 
 router.post('/logout', function(req,res) {

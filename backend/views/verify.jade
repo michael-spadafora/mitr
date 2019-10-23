@@ -1,13 +1,16 @@
 extends layout
 
 block content
-    h1= title
+    h1=Verify
+    h2=message
+    h2=error
     form(name="name", method="post", action='/verify')
         div.input
-            span.label Username:
-            input(type="text", name="username") 
+            span.label Email:
+            input(type="text", name="email") 
             br
             span.label Key:
             input(type="text", name="key")
+            br
             input(type="submit", value="Enter")
             br
