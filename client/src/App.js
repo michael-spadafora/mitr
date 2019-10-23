@@ -1,10 +1,14 @@
-// client/src/App.js
-import React, { Component } from "react";
+import React from 'react'
 
-class App extends Component {
+
+class App extends React.Component {
   render() {
-    return <div>I'M READY TO USE THE BACK END APIS! :-)</div>;
+    return (
+      <div>
+        <h1>Login</h1>
+      </div>
+    )
   }
 }
 
-export default App;
+export default App

@@ -14,6 +14,15 @@ router.post('/adduser', async function(req,res,next) {
   let password = req.body.password
   let email = req.body.email
 
+
+  console.log(req)
+  console.log(username)
+  console.log(password)
+  console.log(email)
+
+
+
+
   let obj = {
     username: username,
     password: password,
@@ -52,7 +61,10 @@ router.post('/verify', async function(req,res) {
 
   console.log(verifyMessage)
 
-  res.send(verifyMessage)
+  if (verifyMessage.status === status.ok)
+    res.send(verifyMessage)
+  
+  else res.status(500).send(verifyMessage)
 
   //TODO: print out success message
 })
@@ -77,7 +89,7 @@ router.post('/login', async function(req,res) {
     console.log("cookie created successfully")
   }
 
-  else res.send(response)
+  else res.status(500).send(response)
 })
 
 router.post('/logout', function(req,res) {
