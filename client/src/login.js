@@ -19,7 +19,7 @@ export default class Login extends Component {
     onSubmit = (event) => {
         event.preventDefault();
         console.log(this.state.username)
-        axios.post('http://localhost:3000/login', 
+        axios.post(baseURL + '/login', 
         {
             username: this.state.username,
             password: this.state.password,

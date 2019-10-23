@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import baseURL from '../constants/constants'
 
 export default class Dashboard extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class Dashboard extends Component {
     findOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
-      axios.get('http://localhost:3000/item/' + this.state.id, 
+      axios.get(baseURL+ '/item/' + this.state.id, 
       {   withCredentials: true,
           headers: {
               'Content-Type': 'application/json'
@@ -54,7 +55,7 @@ export default class Dashboard extends Component {
 
     search = (event) => {
         event.preventDefault();
-        axios.post('http://130.245.168.201/api/search', 
+        axios.post(baseURL + '/search', 
         {
             //search
             withCredentials: true,
@@ -83,7 +84,7 @@ export default class Dashboard extends Component {
 
     newPost = (event) => {
       event.preventDefault();
-      axios.post('http://localhost:3000/additem', 
+      axios.post(baseURL + '/additem', 
       {
           //search
           withCredentials: true,

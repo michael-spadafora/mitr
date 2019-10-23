@@ -19,7 +19,7 @@ export default class Register extends Component {
     
     onSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/adduser', 
+        axios.post(baseURL + 'adduser', 
         {
             username: this.state.username,
             password: this.state.password,

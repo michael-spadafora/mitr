@@ -18,7 +18,7 @@ export default class Verify extends Component {
     
     onSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/verify', 
+        axios.post(baseURL + '/verify', 
         {
             email: this.state.email,     
             key: this.state.key,      
