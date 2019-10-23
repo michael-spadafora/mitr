@@ -26,11 +26,14 @@ export default class Login extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        }, {withCredentials: true})
         .then(res => {
             console.log(res)
             if (res.status === 200) {
-                this.props.history.push('/'); //functions as redirect
+                this.props.history.push({
+                    pathname: '/dashboard', 
+                    data: 'test'
+                }); //functions as redirect
             } else {
                 const error = new Error(res.error);
                 throw error;

@@ -1,14 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
+export default class Register extends Component {
 
-class App extends React.Component {
   render() {
-    return (
-      <div>
-        <h1>Login</h1>
-      </div>
+    return ( 
+      <h1>Mitr</h1>
     )
+
   }
 }
-
-export default App
+    
