@@ -59,7 +59,7 @@ export default class Dashboard extends Component {
     search = (event) => {
         event.preventDefault();
         let url = 'http://130.245.168.201/api/search'
-        
+        url = baseURL + '/search'
         axios.post(url, 
         {
             //search
@@ -89,6 +89,7 @@ export default class Dashboard extends Component {
 
     newPost = (event) => {
       event.preventDefault();
+      let url = baseURL+' /additem'
       axios.post(baseURL + '/additem', 
       {
           //search
