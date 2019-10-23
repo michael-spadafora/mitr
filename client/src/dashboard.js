@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import baseURL from '../constants/constants'
+import baseURL from './constants/constants'
 
 export default class Dashboard extends Component {
     constructor(props) {
