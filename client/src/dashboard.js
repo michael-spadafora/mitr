@@ -86,6 +86,29 @@ export default class Dashboard extends Component {
         });
     };
 
+    logout = (event) => {
+      event.preventDefault();
+      localStorage.clear()
+      let url = 'http://130.245.168.201/api/logout'
+      axios.post(url, 
+      {
+      }, {withCredentials: true})
+      .then(res => {
+          if (res.status === 200) {
+              this.props.history.push({
+                pathname: '/',
+              }); //functions as redirect
+          } else {
+              const error = new Error(res.error);
+              throw error;
+          }
+      })
+      .catch(err => {
+          console.error(err);
+          alert('Error searching');
+      });
+  };
+
     newPost = (event) => {
       event.preventDefault();
       let url = 'http://130.245.168.201/api/additem'
@@ -167,6 +190,11 @@ export default class Dashboard extends Component {
               required
             />
             <input type="submit" value="Submit"/>
+
+            <div>
+              <a href="#" onClick={this.logout()}>LOGOUT</a>
+            </div>
+
           </form>
 
 
