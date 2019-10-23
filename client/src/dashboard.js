@@ -49,7 +49,7 @@ export default class Dashboard extends Component {
       })
       .catch(err => {
           console.error(err);
-          alert('Error logging in please try again');
+          alert('Error finding your mit');
       });
   };
 
@@ -78,7 +78,7 @@ export default class Dashboard extends Component {
         })
         .catch(err => {
             console.error(err);
-            alert('Error logging in please try again');
+            alert('Error searching');
         });
     };
 
@@ -107,7 +107,7 @@ export default class Dashboard extends Component {
       })
       .catch(err => {
           console.error(err);
-          alert('Error logging in please try again');
+          alert('Error posting');
       });
   };
 
