@@ -88,8 +88,9 @@ export default class Dashboard extends Component {
 
     newPost = (event) => {
       event.preventDefault();
-      let url = baseURL+' /additem'
-      axios.post(baseURL + '/additem', 
+      let url = 'http://130.245.168.201/api/additem'
+
+      axios.post(url, 
       {
           //search
           withCredentials: true,
