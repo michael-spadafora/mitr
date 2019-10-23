@@ -190,14 +190,12 @@ export default class Dashboard extends Component {
               required
             />
             <input type="submit" value="Submit"/>
-
-            <div>
-              <a href="#" onClick={this.logout()}>LOGOUT</a>
-            </div>
-
           </form>
 
-
+            <form onSubmit={this.findOne}>
+              <h1>logout</h1>
+              <input type="submit" value="Submit"/>
+            </form>
         </div>
       );
     }
