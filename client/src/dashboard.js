@@ -29,12 +29,15 @@ export default class Dashboard extends Component {
     findOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
-      axios.get('http://130.245.168.201/api/item/' + this.state.id, 
-      {   withCredentials: true,
+      let url = 'http://130.245.168.201/api/item/' + this.state.id
+      axios.get(url, 
+      {
+        withCredentials: true,
           headers: {
               'Content-Type': 'application/json'
           }
-      })
+      },
+      )
       .then(res => {
           console.log(res)
           if (res.status === 200) {
@@ -66,7 +69,7 @@ export default class Dashboard extends Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        }, {withCredentials: true})
         .then(res => {
             if (res.status === 200) {
                 this.props.history.push({
