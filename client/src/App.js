@@ -5,7 +5,10 @@ export default class Register extends Component {
 
   render() {
     return ( 
-      <h1>Mitr</h1>
+      <div>
+        <h1>Mitr</h1>
+        <a href='/login'> Login</a>
+      </div>
     )
 
   }
