@@ -50,6 +50,8 @@ export default class Login extends Component {
 
     render() {
       return (
+        <div>
+
         <form onSubmit={this.onSubmit}>
           <h1>Login Below!</h1>
           <input
@@ -69,6 +71,7 @@ export default class Login extends Component {
             required
           />
          <input type="submit" value="Submit"/>
+         </form>
 
          <br></br>
          <a href='/register'>
@@ -77,7 +80,7 @@ export default class Login extends Component {
         <a href='/verify'>
             <button>verify</button>  
         </a>
-        </form>
+        </div>
       );
     }
   }
