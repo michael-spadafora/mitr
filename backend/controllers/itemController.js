@@ -112,16 +112,16 @@ class ItemController {
             query.username = qUsername
         }
 
-        if (following) {
-            let userFollowingResponse = await userController.getUserFollowing(myUsername, 1000)
-            let following = userFollowingResponse.users
-            console.log("following:" + following.length)
-            console.log("following:" + following[0])
+        // if (following) {
+        //     let userFollowingResponse = await userController.getUserFollowing(myUsername, 1000)
+        //     let following = userFollowingResponse.users
+        //     console.log("following:" + following.length)
+        //     console.log("following:" + following[0])
 
-            query.username = {
-                $in: following
-            }
-        }
+        //     query.username = {
+        //         $in: following
+        //     }
+        // }
 
         let pointer = await coll.find(query).limit(limit).toArray()
 

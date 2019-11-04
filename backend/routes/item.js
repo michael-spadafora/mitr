@@ -62,8 +62,6 @@ router.post('/search', async function(req, res, next) {
     }
 
     console.log(following)
-    console.log(limit)
-
   
     if (!timestamp) {
       timestamp = Math.floor(new Date() / 1000)    
