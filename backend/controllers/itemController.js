@@ -112,6 +112,8 @@ class ItemController {
             query.username = qUsername
         }
 
+        //something is wrong here!!
+
         // if (following) {
         //     let userFollowingResponse = await userController.getUserFollowing(myUsername, 1000)
         //     let following = userFollowingResponse.users

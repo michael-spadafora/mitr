@@ -61,7 +61,10 @@ router.post('/search', async function(req, res, next) {
       following = true
     }
 
-    console.log(following)
+    if (following) {
+      console.log("checking followed posts only")
+
+    }
   
     if (!timestamp) {
       timestamp = Math.floor(new Date() / 1000)    
