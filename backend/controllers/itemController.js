@@ -12,6 +12,8 @@ var dbName = constants.db_name
 var collectionName = constants.collections.items
 var userCollectionName = constants.collections.users
 
+var UserController = require('./userController')
+var userController = new UserController()
 
 class ItemController {
     constructor () {
@@ -31,6 +33,8 @@ class ItemController {
         let db = await MongoClient.connect(this.url)
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
+        
+
 
         let item = newItem(content,childType,username)
         try {
@@ -58,6 +62,7 @@ class ItemController {
         let oid = new mongo.ObjectId(id)
         let query = { _id: oid } 
 
+
         let pointer = await coll.findOne(query)
 
         if (!pointer) {
@@ -83,17 +88,37 @@ class ItemController {
         }
     }
 
-    async search(timestamp, limit) {
+    async search(timestamp, limit, queryPhrase, qUsername, following, myUsername) {
         let db = await MongoClient.connect(this.url)
             
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
+
         
         //edit this query to do less than
         let query = {
             timestamp: {
                 $lte: timestamp
-        }}
+            },
+        }
+
+        if (queryPhrase) {
+            query.$find = {
+                search: queryPhrase
+            }
+        }
+
+        if (qUsername) {
+            query.username = qUsername
+        }
+
+        if (following) {
+            let userFollowingResponse = await userController.getUserFollowing(myUsername, 1000)
+            let following = userFollowingResponse.users
+            query.username = {
+                $in: following
+            }
+        }
 
         let pointer = await coll.find(query).limit(limit).toArray()
 
@@ -109,6 +134,7 @@ class ItemController {
             
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
+
 
         let oid = new mongo.ObjectId(id)
         let query = { _id: oid } 
@@ -137,7 +163,8 @@ class ItemController {
             
         let dbo = db.db(dbName)
         try {
-            await dbo.collection(userCollectionName).drop().catch()
+            await dbo.collection(collectionName).drop().catch()
+            dbo.createIndex(collectionName, 'content')
         } catch (e) {
         } 
 

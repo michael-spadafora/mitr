@@ -186,7 +186,7 @@ class UserController {
 
     }
 
-    async getUsernameFollowing(username, limit) {
+    async getUserFollowing(username, limit) {
         let db = await MongoClient.connect(this.url)
         
         let dbo = db.db(dbName)
@@ -225,7 +225,7 @@ class UserController {
 
         //edit me
         let query = { username: myUsername } 
-        let newvalues = { $push: {following: theirUsername } };
+        let newvalues = { $addToSet: {following: theirUsername } };
 
         try {
             let pointer = await coll.update(query, newvalues)
@@ -237,7 +237,7 @@ class UserController {
 
             //edit them
             query = { username: theirUsername } 
-            newvalues = { $push: {followers: myUsername } };
+            newvalues = { $addToSet: {followers: myUsername } };
             pointer = await coll.update(query, newvalues)
             if (!pointer) {
                 return {status: "error", error: "user not found"}
@@ -249,8 +249,45 @@ class UserController {
         
         console.log("now following")
         return {status: status.ok}
-    
     }
+
+    async unfollow(myUsername, theirUsername) {
+        //fix follow
+        let db = await MongoClient.connect(this.url)
+        
+        let dbo = db.db(dbName)
+        let coll = dbo.collection(collectionName)
+
+        //edit me
+        let query = { username: myUsername } 
+        let newvalues = { $pull: {following: theirUsername } };
+
+        try {
+            let pointer = await coll.update(query, newvalues)
+            
+
+            if (!pointer) {
+                return {status: "error", error: "user not found"}
+            }
+
+            //edit them
+            query = { username: theirUsername } 
+            newvalues = { $pull: {followers: myUsername } };
+            pointer = await coll.update(query, newvalues)
+            if (!pointer) {
+                return {status: "error", error: "user not found"}
+            }
+        } catch (ex) {
+            console.log(ex)
+            return {status: "error", error: "user not found"}
+        }
+        
+        console.log("now following")
+        return {status: status.ok}
+    }
+
+
+
     
    
 }
