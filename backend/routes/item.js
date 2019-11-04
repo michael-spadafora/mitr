@@ -55,6 +55,7 @@ router.post('/search', async function(req, res, next) {
     let query = req.body.q
     let username = req.body.username
     let following = req.body.following
+    let myUsername = req.cookies.username
 
     if (!following) {
       following = true
@@ -75,7 +76,7 @@ router.post('/search', async function(req, res, next) {
     }
     
     
-    let re = await itemController.search(timestamp,limit, query, username, following)
+    let re = await itemController.search(timestamp,limit, query, username, following, myUsername)
     console.log('items:' + re.items[0])
 
     res.send(re)
