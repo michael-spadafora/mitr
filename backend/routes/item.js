@@ -52,6 +52,13 @@ router.post('/search', async function(req, res, next) {
     //get timestamp and limit
     let timestamp = req.body.timestamp
     let limit = req.body.limit
+    let query = req.body.q
+    let username = req.body.username
+    let following = req.body.following
+
+    if (!following) {
+      following = true
+    }
 
     console.log(timestamp)
     console.log(limit)
@@ -67,11 +74,20 @@ router.post('/search', async function(req, res, next) {
       limit = 100
     }
     
-    let re = await itemController.search(timestamp,limit)
+    
+    let re = await itemController.search(timestamp,limit, query, username, following)
     console.log('items:' + re.items[0])
 
     res.send(re)
   });
   
+router.delete('/item/:id', async function (req, res, next) {
+  let id = req.params.id
+  let username = req.cookies.username
+
+  let re = await itemController.delete(id, username)
+  res.send(re)
+  
+});
 
 module.exports = router;

@@ -18,7 +18,7 @@ class ItemController {
     }
 
     async addItem(content, childType, username) {
-        // generate key here            
+        // generate key here           
 
         if (!content) {
             return {
@@ -102,6 +102,34 @@ class ItemController {
         }
 
         return {status: status.ok, items: pointer }
+    }
+
+    async delete(id, username) {
+        let db = await MongoClient.connect(this.url)
+            
+        let dbo = db.db(dbName)
+        let coll = dbo.collection(collectionName)
+
+        let oid = new mongo.ObjectId(id)
+        let query = { _id: oid } 
+
+        let pointer = await coll.findOne(query)
+
+        if (!pointer) {
+            return {
+                status: status.error,
+                error: "Item not found"
+            }
+        }
+        
+        else {
+            //may be able to refactor this into just delete one, removing findone
+            let pointer = await coll.deleteOne(query)
+            let re = {
+                status: status.ok
+            }
+            return re
+        }
     }
    
 }
