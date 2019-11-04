@@ -18,6 +18,8 @@ class UserController {
         let key = "test"
         userInfo.key = key
         userInfo.verified = false
+        userInfo.followers = []
+        userInfo.following = []
 
         let db = await MongoClient.connect(this.url)
             
@@ -48,8 +50,6 @@ class UserController {
         var newvalues = { $set: {verified: true } };
 
         let pointer = await coll.findOne(query)
-
-        console.log("pointer: " + pointer)
 
         
         if (!pointer.key) {
@@ -89,7 +89,6 @@ class UserController {
             return {status: status.error, error: "incorrect password" }
         }
 
-        console.log("stored password:" + pointer.password + "entered:" + password)
 
 
         if (!pointer.verified) return {status: status.error, message: "unverified user"}
@@ -130,7 +129,6 @@ class UserController {
 
     async getUserPosts(username, limit) {
         let db = await MongoClient.connect(this.url)
-
         
         let dbo = db.db(dbName)
         let coll = dbo.collection(itemCollectionName)
@@ -193,6 +191,7 @@ class UserController {
         
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
+        //todo fix this query
         let query = { username: username } 
 
         let pointer = await coll.find(query).limit(limit).toArray()
@@ -217,47 +216,40 @@ class UserController {
         
     }
 
-    async follow(usernameFollower, usernameFollowing) {
+    async follow(myUsername, theirUsername) {
         //fix follow
         let db = await MongoClient.connect(this.url)
-
         
         let dbo = db.db(dbName)
         let coll = dbo.collection(collectionName)
 
-        //add a follower
-        let query = { username: usernameFollowing } 
-        let newvalues = { $push: {followers: usernameFollower } };
-        let pointer = await coll.update(query, newvalues)
-        console.log("pointer: " + pointer)
+        //edit me
+        let query = { username: myUsername } 
+        let newvalues = { $push: {following: theirUsername } };
 
-        if (!pointer) {
+        try {
+            let pointer = await coll.update(query, newvalues)
+            
+
+            if (!pointer) {
+                return {status: "error", error: "user not found"}
+            }
+
+            //edit them
+            query = { username: theirUsername } 
+            newvalues = { $push: {followers: myUsername } };
+            pointer = await coll.update(query, newvalues)
+            if (!pointer) {
+                return {status: "error", error: "user not found"}
+            }
+        } catch (ex) {
+            console.log(ex)
             return {status: "error", error: "user not found"}
-        }
-
-        //add followed
-        query = { username: usernameFollower } 
-        newvalues = { $push: {followers: usernameFollowing } };
-        let pointer = await coll.update(query, newvalues)
-        if (!pointer) {
-            return {status: "error", error: "user not found"}
-
         }
         
-        console.log("assigned Key: " + pointer.key + " ; user sent key: " + key)
-
-        if (pointer.key === key || key === "abracadabra") {
-            let query = { email: email } 
-            await coll.updateOne(query, newvalues)
-            console.log("verified user")   
-            db.close()
-            return {status: "OK"}
-            
-        }
-        else {
-            console.log("invalid key")
-            return {status: status.error, error: "invalid key"}
-        }
+        console.log("now following")
+        return {status: status.ok}
+    
     }
     
    

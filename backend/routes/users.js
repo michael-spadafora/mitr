@@ -44,13 +44,10 @@ router.post('/verify', async function(req,res) {
   let email = req.body.email
   let key = req.body.key
 
-  console.log(req.body)
 
-  console.log(req.body.key)
 
   let verifyMessage = await userController.verifyUser(email, key)
 
-  console.log(verifyMessage)
 
   if (verifyMessage.status === status.ok)
     res.send(verifyMessage)
@@ -72,12 +69,10 @@ router.post('/login', async function(req,res) {
       status: status.ok
     }
   }
-  console.log(response)
   if (response.status === status.ok){
     req.session.user = username
     res.location('/index')
     res.cookie('username', username, {maxAge: 900000}).send(response)
-    console.log("cookie created successfully")
   }
 
   else res.status(500).send(response)
@@ -94,45 +89,53 @@ router.post('/logout', function(req,res) {
     res.send({status: status.ok});
 })
 
-router.get('/user/:username', function(req, res) {
+router.get('/user/:username', async function(req, res) {
   let username = req.params.username
-  let res = await userController.getUser(username)
+  let a = await userController.getUser(username)
 
-  res.send(res)
+  res.send(a)
 })
 
-router.get('/user/:username/posts', function(req, res) {
+router.get('/user/:username/posts', async function(req, res) {
   let username = req.params.username
   let limit = req.params.limit
   if (!limit) limit = 50
   limit = Math.min(limit, 200)
 
-  let res = await userController.getUserPosts(username, limit)
-  res.send(res)
+  let a = await userController.getUserPosts(username, limit)
+  res.send(a)
 })
 
-router.get('/user/:username/followers', function(req, res) {
+router.get('/user/:username/followers', async function(req, res) {
   let username = req.params.username
-  let res = await userController.getUserFollowers(username)
+  let a = await userController.getUserFollowers(username)
 
-  res.send(res)
+  res.send(a)
 })
 
-router.get('/user/:username/following', function(req, res) {
+router.get('/user/:username/following', async function(req, res) {
   let username = req.params.username
-  let res = await userController.getUsernameFollowing(username)
+  let a = await userController.getUsernameFollowing(username)
 
-  res.send(res)
+  res.send(a)
 })
 
-router.post('/follow', function(req, res) {
-  let followerUsername = req.cookies.username
-  let followedUsername = req.params.username //change to arg instead of param
+router.post('/follow', async function(req, res) {
+  console.log("test")
+  let myUsername = req.cookies.username
+  let theirUsername = req.body.username //change to arg instead of param
   //get follow
 
-  let res = await userController.follow(followerUsername, followedUsername)
+  if (!myUsername) {
+    console.log("no cookie")
+  }
+  if (!theirUsername) {
+    console.log("incorrect username param")
+  }
 
-  res.send(res)
+  let a = await userController.follow(myUsername, theirUsername)
+
+  res.send(a)
 })
 
 module.exports = router;

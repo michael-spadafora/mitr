@@ -10,6 +10,7 @@ var status = constants.status
 var mongoUrl = constants.mongo_url
 var dbName = constants.db_name
 var collectionName = constants.collections.items
+var userCollectionName = constants.collections.users
 
 
 class ItemController {
@@ -66,7 +67,6 @@ class ItemController {
             }
         }
         else {
-            console.log(pointer)
 
             let re = {
                 id: pointer._id,
@@ -124,7 +124,7 @@ class ItemController {
         
         else {
             //may be able to refactor this into just delete one, removing findone
-            let pointer = await coll.deleteOne(query)
+            pointer = await coll.deleteOne(query)
             let re = {
                 status: status.ok
             }
@@ -132,6 +132,21 @@ class ItemController {
         }
     }
    
+    async reset() {
+        let db = await MongoClient.connect(this.url)
+            
+        let dbo = db.db(dbName)
+        try {
+            await dbo.collection(userCollectionName).drop().catch()
+        } catch (e) {
+        } 
+
+        try {
+            await dbo.collection(userCollectionName).drop().catch()
+        } catch (e) {
+            return
+        } 
+    }
 }
 
 module.exports = ItemController

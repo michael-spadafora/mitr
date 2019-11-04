@@ -26,6 +26,14 @@ router.get('/verify', function(req, res, next) {
   res.render('verify', { title: 'Verify Account' });  
 })
 
+router.post('/reset', async function(req, res, next) {
+  let ItemController = require('../controllers/itemController')
+  let itemController = new ItemController()
+  await itemController.reset()
+  console.log("reset")
+  res.send("reset")
+})
+
 
 
 module.exports = router;
