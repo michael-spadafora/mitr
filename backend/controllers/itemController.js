@@ -116,6 +116,8 @@ class ItemController {
             let userFollowingResponse = await userController.getUserFollowing(myUsername, 1000)
             let following = userFollowingResponse.users
             console.log("following:" + following.length)
+            console.log("following:" + following[0])
+
             query.username = {
                 $in: following
             }
