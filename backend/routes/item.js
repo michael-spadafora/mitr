@@ -57,12 +57,12 @@ router.post('/search', async function(req, res, next) {
     let following = req.body.following
     let myUsername = req.cookies.username
 
-    if (following) {
-      console.log("checking followed posts only")
-    }
+
+    console.log("checking followed posts only " + following)
+
+  
 
     if (typeof following === undefined) {
-      console.log("defaulting to followed posts only")
       following = true
     }
 
