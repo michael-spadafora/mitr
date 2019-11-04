@@ -61,7 +61,7 @@ router.post('/search', async function(req, res, next) {
       following = true
     }
 
-    console.log(timestamp)
+    console.log(following)
     console.log(limit)
 
   
