@@ -252,13 +252,11 @@ class UserController {
             console.log(ex)
             return {status: "error", error: "user not found"}
         }
-        
-        console.log("now following")
-        return {status: status.ok}
     }
 
     async unfollow(myUsername, theirUsername) {
         //fix follow
+        console.log("unfollowing user")
         let db = await MongoClient.connect(this.url)
         
         let dbo = db.db(dbName)
@@ -269,27 +267,28 @@ class UserController {
         let newvalues = { $pull: {following: theirUsername } };
 
         try {
-            let pointer = await coll.update(query, newvalues)
-            
-
-            if (!pointer) {
+            userTest = {username: theirUsername}
+            pointer = await coll.find(userTest)
+            if (!pointer.username) {
+                console.log("they no username")
                 return {status: "error", error: "user not found"}
             }
+
+            let pointer = await coll.update(query, newvalues)
+            
 
             //edit them
             query = { username: theirUsername } 
             newvalues = { $pull: {followers: myUsername } };
             pointer = await coll.update(query, newvalues)
-            if (!pointer) {
-                return {status: "error", error: "user not found"}
-            }
+            console.log("now unfollowed")
+            return {status: status.ok}
         } catch (ex) {
             console.log(ex)
             return {status: "error", error: "user not found"}
         }
         
-        console.log("now following")
-        return {status: status.ok}
+        
     }
 
 
