@@ -148,14 +148,14 @@ class ItemController {
 
         if (!pointer) {
             return {
-                status: 400,
+                status: status.error,
                 error: "Item not found"
             }
         }
 
         if (!username === pointer.username) {
             return {
-                status: 400,
+                status: status.error,
                 error: "username not a match"
             }
         }
