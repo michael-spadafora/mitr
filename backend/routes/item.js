@@ -89,7 +89,7 @@ router.delete('/item/:id', async function (req, res, next) {
   let username = req.cookies.username
 
   if (!username) {
-    res.send({status: "error"})
+    res.send({status: status.error, error: "not logged in", code: 500})
     return
   }
   console.log("no cancel delete")
