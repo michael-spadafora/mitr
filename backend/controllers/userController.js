@@ -240,7 +240,7 @@ class UserController {
                 return {status: "error", error: "user not found"}
             }
 
-            let pointer = await coll.update(query, newvalues)
+            pointer = await coll.update(query, newvalues)
 
             if (!pointer) {
                 return {status: "error", error: "user not found"}
