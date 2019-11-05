@@ -228,8 +228,19 @@ class UserController {
         let newvalues = { $addToSet: {following: theirUsername } };
 
         try {
+            let userTest = {username: myUsername}
+            let pointer = await coll.find(userTest)
+            if (!pointer) {
+                return {status: "error", error: "user not found"}
+            }
+
+            userTest = {username: theirUsername}
+            pointer = await coll.find(userTest)
+            if (!pointer) {
+                return {status: "error", error: "user not found"}
+            }
+
             let pointer = await coll.update(query, newvalues)
-            
 
             if (!pointer) {
                 return {status: "error", error: "user not found"}
