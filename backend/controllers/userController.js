@@ -267,7 +267,7 @@ class UserController {
         let newvalues = { $pull: {following: theirUsername } };
 
         try {
-            userTest = {username: theirUsername}
+            let userTest = {username: theirUsername}
             pointer = await coll.findOne(userTest)
             if (!pointer.username) {
                 console.log("they no username")
