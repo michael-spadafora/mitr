@@ -138,6 +138,11 @@ router.post('/follow', async function(req, res) {
   let follow = req.body.follow
   //get follow
 
+  if (myUsername === theirUsername) {
+    let response = {status: 'error'}
+    res.send(response)
+  }
+
   if (!myUsername) {
     console.log("no cookie")
   }

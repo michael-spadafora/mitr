@@ -214,6 +214,7 @@ class UserController {
     }
 
     async follow(myUsername, theirUsername) {
+        
         //fix follow
         let db = await MongoClient.connect(this.url)
         
