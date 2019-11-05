@@ -62,7 +62,7 @@ router.post('/search', async function(req, res, next) {
 
   
 
-    if (typeof following === undefined) {
+    if (typeof following === 'undefined') {
       console.log("defaulting to cehcking followed only")
 
       following = true
