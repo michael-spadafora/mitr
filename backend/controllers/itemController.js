@@ -152,6 +152,13 @@ class ItemController {
                 error: "Item not found"
             }
         }
+
+        if (!username === pointer.username) {
+            return {
+                status: status.error,
+                error: "Item not found"
+            }
+        }
         
         else {
             //may be able to refactor this into just delete one, removing findone

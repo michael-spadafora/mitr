@@ -88,6 +88,10 @@ router.delete('/item/:id', async function (req, res, next) {
   let id = req.params.id
   let username = req.cookies.username
 
+  if (!username) {
+    res.send({status: "error"})
+  }
+
   let re = await itemController.delete(id, username)
   res.send(re)
   
