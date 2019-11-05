@@ -136,7 +136,6 @@ class UserController {
 
         let pointer = await coll.find(query).limit(limit).toArray()
 
-        console.log("pointer: " + pointer)
 
         
         if (!pointer) {
@@ -166,7 +165,6 @@ class UserController {
 
         let pointer = await coll.find(query).limit(limit).toArray()
 
-        console.log("pointer: " + pointer)
 
         
         if (!pointer) {
@@ -196,7 +194,6 @@ class UserController {
 
         let pointer = await coll.find(query).limit(limit).toArray()
 
-        console.log("pointer: " + pointer)
 
         
         if (!pointer) {
@@ -231,28 +228,26 @@ class UserController {
             let userTest = {username: myUsername}
             let pointer = await coll.find(userTest)
             if (!pointer.username) {
+                console.log("me no username")
                 return {status: "error", error: "user not found"}
             }
 
             userTest = {username: theirUsername}
             pointer = await coll.find(userTest)
             if (!pointer.username) {
+                console.log("they no username")
                 return {status: "error", error: "user not found"}
             }
 
             pointer = await coll.update(query, newvalues)
-
-            if (!pointer) {
-                return {status: "error", error: "user not found"}
-            }
 
             //edit them
             query = { username: theirUsername } 
             newvalues = { $addToSet: {followers: myUsername } };
             pointer = await coll.update(query, newvalues)
-            if (!pointer) {
-                return {status: "error", error: "user not found"}
-            }
+            return {status: status.ok}
+
+            
         } catch (ex) {
             console.log(ex)
             return {status: "error", error: "user not found"}
