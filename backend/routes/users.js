@@ -111,14 +111,23 @@ router.get('/user/:username/posts', async function(req, res) {
 
 router.get('/user/:username/followers', async function(req, res) {
   let username = req.params.username
-  let a = await userController.getUserFollowers(username)
+  let limit = req.query.limit
+
+  if (!limit) limit = 50
+  limit = Math.min(limit, 200)
+  let a = await userController.getUserFollowers(username, limit)
 
   res.send(a)
 })
 
 router.get('/user/:username/following', async function(req, res) {
   let username = req.params.username
-  let a = await userController.getUsernameFollowing(username)
+  let limit = req.query.limit
+
+  if (!limit) limit = 50
+  limit = Math.min(limit, 200)
+
+  let a = await userController.getUsernameFollowing(username, limit)
 
   res.send(a)
 })
