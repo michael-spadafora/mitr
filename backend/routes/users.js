@@ -124,7 +124,6 @@ router.get('/user/:username/following', async function(req, res) {
 })
 
 router.post('/follow', async function(req, res) {
-  console.log("test")
   let myUsername = req.cookies.username
   let theirUsername = req.body.username //change to arg instead of param
   //get follow
@@ -133,7 +132,7 @@ router.post('/follow', async function(req, res) {
     console.log("no cookie")
   }
   if (!theirUsername) {
-    console.log("incorrect username param")
+    console.log("incorrect their username param")
   }
 
   let a = await userController.follow(myUsername, theirUsername)
