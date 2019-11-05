@@ -136,16 +136,19 @@ router.post('/follow', async function(req, res) {
     console.log("incorrect their username param")
   }
 
+  console.log("are we followin?" + follow)
+
   if (typeof follow === 'undefined') {
     follow = true
   }
 
+  let a
   if (follow) {
-    let a = await userController.follow(myUsername, theirUsername)
+    a = await userController.follow(myUsername, theirUsername)
   }
 
   if (!follow) {
-    let a = await userController.unfollow(myUsername, theirUsername)
+    a = await userController.unfollow(myUsername, theirUsername)
   }
 
   res.send(a)
