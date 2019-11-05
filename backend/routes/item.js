@@ -90,7 +90,7 @@ router.delete('/item/:id', async function (req, res, next) {
 
   if (!username) {
     console.log("whats happening")
-    res.status(500).send({
+    res.status(400).send({
         error:"not logged in",
         message: "not logged in"
       }
