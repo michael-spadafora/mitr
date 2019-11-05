@@ -172,6 +172,7 @@ class UserController {
         }
 
         let followerUsernames = []
+        pointer = pointer.followers
         
         for (let i = 0; i < pointer.length; i++) {
             followerUsernames.push(pointer[i].username)
@@ -200,10 +201,12 @@ class UserController {
             return {status: status.error, error: "following not found"}
         }
 
+        pointer = pointer.following
+
         let followingUsernames = []
         
         for (let i = 0; i < pointer.length; i++) {
-            followingUsernames.push(pointer[i].username)
+            followingUsernames.push(pointer.username)
         }
 
         return {
@@ -214,7 +217,7 @@ class UserController {
     }
 
     async follow(myUsername, theirUsername) {
-        
+
         //fix follow
         let db = await MongoClient.connect(this.url)
         
