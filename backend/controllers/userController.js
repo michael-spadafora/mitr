@@ -113,7 +113,7 @@ class UserController {
         console.log("pointer: " + pointer)
 
         
-        if (!pointer.key) {
+        if (!pointer) {
             return {status: status.error, error: "user not found"}
         }
         
