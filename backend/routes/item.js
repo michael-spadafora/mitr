@@ -57,22 +57,16 @@ router.post('/search', async function(req, res, next) {
     let following = req.body.following
     let myUsername = req.cookies.username
 
-
-    console.log("checking followed posts only " + following)
-
-  
+    if (myUsername) {
+      following = false
+    }
 
     if (typeof following === 'undefined') {
-      console.log("defaulting to cehcking followed only")
-
       following = true
     }
 
-    console.log("checking followed posts only " + following)
-
-
-    
-  
+    console.log("checking followed posts only: " + following)
+      
     if (!timestamp) {
       timestamp = Math.floor(new Date() / 1000)    
     }
