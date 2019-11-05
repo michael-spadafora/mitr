@@ -268,7 +268,7 @@ class UserController {
 
         try {
             userTest = {username: theirUsername}
-            pointer = await coll.find(userTest)
+            pointer = await coll.findOne(userTest)
             if (!pointer.username) {
                 console.log("they no username")
                 return {status: "error", error: "user not found"}
