@@ -103,8 +103,8 @@ class ItemController {
         }
 
         if (queryPhrase) {
-            query.$find = {
-                search: queryPhrase
+            query.$text = {
+                $search: queryPhrase
             }
         }
 
