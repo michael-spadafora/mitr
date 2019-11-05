@@ -122,8 +122,8 @@ class UserController {
             status: status.ok, 
             user: {
                 email: pointer.email,
-                followers: pointer.followers,
-                following: pointer.following
+                followers: pointer.followers.length,
+                following: pointer.following.length
         }}
     }
 
