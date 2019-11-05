@@ -175,7 +175,7 @@ class UserController {
         pointer = pointer.followers
         
         for (let i = 0; i < pointer.length && i < limit; i++) {
-            followerUsernames.push(pointer[i].username)
+            followerUsernames.push(pointer[i])
         }
 
         return {
@@ -206,7 +206,7 @@ class UserController {
         let followingUsernames = []
         
         for (let i = 0; i < pointer.length && i < limit; i++) {
-            followingUsernames.push(pointer.username)
+            followingUsernames.push(pointer[i])
         }
 
         return {
