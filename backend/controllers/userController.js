@@ -123,7 +123,7 @@ class UserController {
             user: {
                 email: pointer.email,
                 followers: pointer.followers,
-                following: pointer.followed
+                following: pointer.following
         }}
     }
 
