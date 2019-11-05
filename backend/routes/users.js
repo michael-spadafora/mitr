@@ -127,7 +127,7 @@ router.get('/user/:username/following', async function(req, res) {
   if (!limit) limit = 50
   limit = Math.min(limit, 200)
 
-  let a = await userController.getUsernameFollowing(username, limit)
+  let a = await userController.getUserFollowing(username, limit)
 
   res.send(a)
 })
