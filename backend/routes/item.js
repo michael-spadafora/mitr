@@ -57,7 +57,7 @@ router.post('/search', async function(req, res, next) {
     let following = req.body.following
     let myUsername = req.cookies.username
 
-    if (myUsername) {
+    if (!myUsername) {
       following = false
     }
 
