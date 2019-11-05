@@ -100,7 +100,7 @@ router.get('/user/:username/posts', async function(req, res) {
   let username = req.params.username
   let limit = req.query.limit
 
-  console.log("limit: " + limit + " limit 2:" + limit2)
+  console.log("limit: " + limit)
 
   if (!limit) limit = 50
   limit = Math.min(limit, 200)
