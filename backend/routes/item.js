@@ -66,6 +66,9 @@ router.post('/search', async function(req, res, next) {
       following = true
     }
 
+    console.log("checking followed posts only " + following)
+
+
     
   
     if (!timestamp) {
