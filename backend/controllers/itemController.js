@@ -169,7 +169,7 @@ class ItemController {
         let dbo = db.db(dbName)
         try {
             await dbo.collection(collectionName).drop().catch()
-            dbo.createIndex(collectionName, 'content')
+            dbo.createIndex(collectionName, {'content': 'text'} )
         } catch (e) {
         } 
 
