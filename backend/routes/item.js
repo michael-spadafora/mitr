@@ -101,7 +101,8 @@ router.delete('/item/:id', async function (req, res, next) {
 
   let re = await itemController.delete(id, username)
 
-  if (re.status === status.error) {
+
+  if (re.status !== status.ok) {
     res.status(400).send({
       error:"invalid login",
       message: "invalid login"

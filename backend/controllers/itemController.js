@@ -153,7 +153,11 @@ class ItemController {
             }
         }
 
-        if (!username === pointer.username) {
+        console.log("post username: " + pointer.username)
+        console.log("username: " + username)
+
+
+        if (username !== pointer.username) {
             return {
                 status: status.error,
                 error: "username not a match"
