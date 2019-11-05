@@ -229,7 +229,7 @@ class UserController {
 
         try {
             let userTest = {username: myUsername}
-            let pointer = await coll.find(userTest)
+            pointer = await coll.find(userTest)
             if (!pointer) {
                 return {status: "error", error: "user not found"}
             }
