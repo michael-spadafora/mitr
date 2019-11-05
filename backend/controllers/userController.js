@@ -163,7 +163,7 @@ class UserController {
         //todo fix query
         let query = { username: username } 
 
-        let pointer = await coll.find(query).limit(limit).toArray()
+        let pointer = await coll.findOne(query)
 
 
         
@@ -174,7 +174,7 @@ class UserController {
         let followerUsernames = []
         pointer = pointer.followers
         
-        for (let i = 0; i < pointer.length; i++) {
+        for (let i = 0; i < pointer.length && i < limit; i++) {
             followerUsernames.push(pointer[i].username)
         }
 
@@ -193,7 +193,7 @@ class UserController {
         //todo fix this query
         let query = { username: username } 
 
-        let pointer = await coll.find(query).limit(limit).toArray()
+        let pointer = await coll.findOne(query)
 
 
         
@@ -205,7 +205,7 @@ class UserController {
 
         let followingUsernames = []
         
-        for (let i = 0; i < pointer.length; i++) {
+        for (let i = 0; i < pointer.length && i < limit; i++) {
             followingUsernames.push(pointer.username)
         }
 
