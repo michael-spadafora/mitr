@@ -90,11 +90,12 @@ router.delete('/item/:id', async function (req, res, next) {
 
   if (!username) {
     res.send({status: "error"})
+    return
   }
+  console.log("no cancel delete")
 
   let re = await itemController.delete(id, username)
   res.send(re)
-  
 });
 
 module.exports = router;
