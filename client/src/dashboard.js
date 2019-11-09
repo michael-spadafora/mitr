@@ -11,12 +11,20 @@ export default class Dashboard extends Component {
         //search
         timestamp: '',
         limit: '',
+        q: '',
+        username: '',
+        following: false,
+
         
         //post
         content: '',
 
         //enter ID
-        id: ''
+        id: '',
+
+        //user view
+        userFollowers: '',
+        userFollowing: ''
       };
     }  
     handleInputChange = (event) => {
@@ -29,8 +37,38 @@ export default class Dashboard extends Component {
     findOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
-      let url = 'http://130.245.168.201/api/item/' + this.state.id
+      let url = 'http://130.245.168.58/api/item/' + this.state.id
       axios.get(url, 
+      {
+        withCredentials: true,
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      },
+      )
+      .then(res => {
+          console.log(res)
+          if (res.status === 200) {
+              this.props.history.push({
+                pathname: '/display',
+                data: [res.data.item]
+              }); //functions as redirect
+          } else {
+              const error = new Error(res.error);
+              throw error;
+          }
+      })
+      .catch(err => {
+          console.error(err);
+          alert('Error finding your mit');
+      });
+  };
+
+    deleteOne = (event) => {
+      event.preventDefault();
+      console.log("get id: " + this.state.id)
+      let url = 'http://130.245.168.58/api/item/' + this.state.id
+      axios.delete(url, 
       {
         withCredentials: true,
           headers: {
@@ -58,13 +96,17 @@ export default class Dashboard extends Component {
 
     search = (event) => {
         event.preventDefault();
-        let url = 'http://130.245.168.201/api/search'
+        let url = 'http://130.245.168.58/api/search'
         axios.post(url, 
         {
             //search
             withCredentials: true,
             timestamp: this.state.timestamp,
             limit: this.state.limit,
+            username: this.state.username,
+            q: this.state.q,
+            following: this.state.username,
+
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -89,7 +131,7 @@ export default class Dashboard extends Component {
     logout = (event) => {
       event.preventDefault();
       localStorage.clear()
-      let url = 'http://130.245.168.201/api/logout'
+      let url = 'http://130.245.168.58/api/logout'
       axios.post(url, 
       {
       }, {withCredentials: true})
@@ -111,7 +153,7 @@ export default class Dashboard extends Component {
 
     newPost = (event) => {
       event.preventDefault();
-      let url = 'http://130.245.168.201/api/additem'
+      let url = 'http://130.245.168.58/api/additem'
 
       axios.post(url, 
       {
@@ -160,7 +202,28 @@ export default class Dashboard extends Component {
               placeholder="Enter limit (optional) (min 25 max 100)"
               value={this.state.limit}
               onChange={this.handleInputChange}
-              
+            />
+            <input
+              type="text"
+              name="q"
+              placeholder="Enter query"
+              value={this.state.limit}
+              onChange={this.handleInputChange}
+            />
+            <input
+              type="text"
+              name="username"
+              placeholder="Enter username(optional)"
+              value={this.state.limit}
+              onChange={this.handleInputChange}
+            />
+            only show posts from users you are following:
+            <input
+              type="checkbox"
+              name="following"
+              placeholder="Enter limit (optional) (min 25 max 100)"
+              value={this.state.limit}
+              onChange={this.handleInputChange}
             />
           <input type="submit" value="Submit"/>
           </form>
@@ -186,6 +249,33 @@ export default class Dashboard extends Component {
               name="id"
               placeholder="Enter id"
               value={this.state.id}
+              onChange={this.handleInputChange}
+              required
+            />
+            <input type="submit" value="Submit"/>
+          </form>
+
+          <br></br>
+          <form onSubmit={this.viewUserFollowers}>
+            <h1>view user followers</h1>
+            <input
+              type="text"
+              name="id"
+              placeholder="Enter id"
+              value={this.state.userFollowers}
+              onChange={this.handleInputChange}
+              required
+            />
+            <input type="submit" value="Submit"/>
+          </form>
+
+          <form onSubmit={this.viewUserFollowing}>
+            <h1>view user followers</h1>
+            <input
+              type="text"
+              name="id"
+              placeholder="Enter id"
+              value={this.state.userFollowing}
               onChange={this.handleInputChange}
               required
             />
