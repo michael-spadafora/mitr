@@ -20,7 +20,7 @@ export default class Verify extends Component {
     
     onSubmit = (event) => {
         event.preventDefault();
-        let url = 'http://130.245.168.58/api/verify'
+        let url = 'http://130.245.168.250/api/verify'
 
         axios.post(url, 
         {

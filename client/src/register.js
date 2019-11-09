@@ -21,7 +21,7 @@ export default class Register extends Component {
     
     onSubmit = (event) => {
         event.preventDefault();
-        let url = 'http://130.245.168.58/api/adduser'
+        let url = 'http://130.245.168.250/api/adduser'
         axios.post(url,
         {
             username: this.state.username,

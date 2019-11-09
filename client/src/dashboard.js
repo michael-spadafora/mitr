@@ -37,7 +37,7 @@ export default class Dashboard extends Component {
     findOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
-      let url = 'http://130.245.168.58/api/item/' + this.state.id
+      let url = 'http://130.245.168.250/api/item/' + this.state.id
       axios.get(url, 
       {
         withCredentials: true,
@@ -67,7 +67,7 @@ export default class Dashboard extends Component {
     deleteOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
-      let url = 'http://130.245.168.58/api/item/' + this.state.id
+      let url = 'http://130.245.168.250/api/item/' + this.state.id
       axios.delete(url, 
       {
         withCredentials: true,
@@ -96,7 +96,7 @@ export default class Dashboard extends Component {
 
     search = (event) => {
         event.preventDefault();
-        let url = 'http://130.245.168.58/api/search'
+        let url = 'http://130.245.168.250/api/search'
         axios.post(url, 
         {
             //search
@@ -131,7 +131,7 @@ export default class Dashboard extends Component {
     logout = (event) => {
       event.preventDefault();
       localStorage.clear()
-      let url = 'http://130.245.168.58/api/logout'
+      let url = 'http://130.245.168.250/api/logout'
       axios.post(url, 
       {
       }, {withCredentials: true})
@@ -153,7 +153,7 @@ export default class Dashboard extends Component {
 
     newPost = (event) => {
       event.preventDefault();
-      let url = 'http://130.245.168.58/api/additem'
+      let url = 'http://130.245.168.250/api/additem'
 
       axios.post(url, 
       {
