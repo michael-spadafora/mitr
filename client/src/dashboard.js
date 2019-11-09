@@ -207,14 +207,14 @@ export default class Dashboard extends Component {
               type="text"
               name="q"
               placeholder="Enter query"
-              value={this.state.limit}
+              value={this.state.q}
               onChange={this.handleInputChange}
             />
             <input
               type="text"
               name="username"
               placeholder="Enter username(optional)"
-              value={this.state.limit}
+              value={this.state.username}
               onChange={this.handleInputChange}
             />
             only show posts from users you are following:
@@ -260,8 +260,8 @@ export default class Dashboard extends Component {
             <h1>view user followers</h1>
             <input
               type="text"
-              name="id"
-              placeholder="Enter id"
+              name="userFollowers"
+              placeholder="Enter username"
               value={this.state.userFollowers}
               onChange={this.handleInputChange}
               required
@@ -273,8 +273,8 @@ export default class Dashboard extends Component {
             <h1>view user followers</h1>
             <input
               type="text"
-              name="id"
-              placeholder="Enter id"
+              name="userFollowing"
+              placeholder="Enter username"
               value={this.state.userFollowing}
               onChange={this.handleInputChange}
               required
