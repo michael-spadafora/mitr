@@ -93,9 +93,9 @@ export default class Dashboard extends Component {
           
             this.props.history.push({
               pathname: '/user',
-              email: res.email,
-              followers: res.data.followers,
-              following: res.data.following,
+              email: res.data.user.email,
+              followers: res.data.user.followers,
+              following: res.data.user.following,
 
             }); //functions as redirect
         } else {
