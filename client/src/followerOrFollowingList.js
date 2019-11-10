@@ -5,8 +5,8 @@ class FollowerOrFollowingDisplay extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: props.username,
-            userList: props.userList,
+            username: props.location.username,
+            userList: props.location.userList,
             type: props.type
         };
         console.log('display props:' + props.location.data)
