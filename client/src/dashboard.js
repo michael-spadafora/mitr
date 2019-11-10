@@ -76,7 +76,7 @@ export default class Dashboard extends Component {
   findOneUser = (event) => {
     event.preventDefault();
     console.log("get id: " + this.state.id)
-    let url = 'http://130.245.168.250/api/item/' + this.state.id
+    let url = 'http://130.245.168.250/api/item/' + this.state.singleUsername
     axios.get(url, 
     {
       username: this.state.singleUsername,
