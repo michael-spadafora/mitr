@@ -109,6 +109,76 @@ export default class Dashboard extends Component {
     });
 };
 
+viewUserFollowing = (event) => {
+  event.preventDefault();
+  let url = 'http://130.245.168.250/api/user/' + this.state.userFollowing
+  axios.get(url, 
+  {
+    username: this.state.userFollowing,
+    withCredentials: true,
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  },
+  )
+  .then(res => {
+      console.log(res)
+      if (res.status === 200 || res.status === 304) {
+        console.log(res.data)
+        
+          this.props.history.push({
+            pathname: '/users/following',
+            username: this.state.userFollowing,
+            type: "following",
+            users: res.data.users
+
+          }); //functions as redirect
+      } else {
+          const error = new Error(res.error);
+          throw error;
+      }
+  })
+  .catch(err => {
+      console.error(err);
+      alert('Error finding user');
+  });
+};
+
+viewUserFollowers = (event) => {
+  event.preventDefault();
+  let url = 'http://130.245.168.250/api/user/' + this.state.userFollowers
+  axios.get(url, 
+  {
+    username: this.state.userFollowers,
+    withCredentials: true,
+      headers: {
+          'Content-Type': 'application/json'
+      }
+  },
+  )
+  .then(res => {
+      console.log(res)
+      if (res.status === 200 || res.status === 304) {
+        console.log(res.data)
+        
+          this.props.history.push({
+            pathname: '/users/followers',
+            username: this.state.userFollowing,
+            type: "followers",
+            users: res.data.users
+
+          }); //functions as redirect
+      } else {
+          const error = new Error(res.error);
+          throw error;
+      }
+  })
+  .catch(err => {
+      console.error(err);
+      alert('Error finding user');
+  });
+};
+
     deleteOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
