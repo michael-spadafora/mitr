@@ -18,8 +18,8 @@ const routing = (
       <div>
         <Route path="/" component={App} />
         <Route path="/user" component={Profile} />
-        <Route path="/user/followers" component={FollowerOrFollowing} />
-        <Route path="/user/following" component={FollowerOrFollowing} />
+        <Route path="/followers" component={FollowerOrFollowing} />
+        <Route path="/following" component={FollowerOrFollowing} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />

@@ -127,7 +127,7 @@ viewUserFollowing = (event) => {
         console.log(res.data)
         
           this.props.history.push({
-            pathname: '/users/following',
+            pathname: '/following',
             username: this.state.userFollowing,
             type: "following",
             users: res.data.users
@@ -163,7 +163,7 @@ viewUserFollowers = (event) => {
         console.log(res.data)
         
           this.props.history.push({
-            pathname: '/users/followers',
+            pathname: '/followers',
             username: this.state.userFollowing,
             type: "followers",
             users: res.data.users
