@@ -9,7 +9,7 @@ class FollowerOrFollowingDisplay extends React.Component {
             userList: props.location.userList,
             type: props.location.type
         };
-        console.log('display props:' + props.location.data)
+        console.log('display props:' + props.location)
     }
 
     render() {
