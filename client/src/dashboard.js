@@ -119,10 +119,9 @@ export default class Dashboard extends Component {
       .then(res => {
           console.log(res)
           if (res.status === 200) {
-              this.props.history.push({
-                pathname: '/dashboard',
-                message: "successfully deleted post"
-              }); //functions as redirect
+            this.setState({
+              message: "deleted post with id " + this.state.deleteId
+            })
           } else {
               const error = new Error(res.error);
               throw error;
@@ -147,10 +146,9 @@ export default class Dashboard extends Component {
     }, {withCredentials: true})
     .then(res => {
         if (res.status === 200) {
-            this.props.history.push({
-              pathname: '/dashboard',
-              message: "successfully followed user"
-            }); //functions as redirect
+          this.setState({
+            message: "followed user" +  this.state.followUsername
+          })
         } else {
             const error = new Error(res.error);
             throw error;
