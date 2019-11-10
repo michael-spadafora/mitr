@@ -22,6 +22,12 @@ export default class Dashboard extends Component {
         //enter ID
         id: '',
 
+        //delete id
+        deleteId: '',
+
+        //enter one username 
+        singleUsername: '',
+
         //user view
         userFollowers: '',
         userFollowing: ''
@@ -63,6 +69,37 @@ export default class Dashboard extends Component {
           alert('Error finding your mit');
       });
   };
+
+  findOneUser = (event) => {
+    event.preventDefault();
+    console.log("get id: " + this.state.id)
+    let url = 'http://130.245.168.250/api/item/' + this.state.id
+    axios.get(url, 
+    {
+      username: this.state.singleUsername,
+      withCredentials: true,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    },
+    )
+    .then(res => {
+        console.log(res)
+        if (res.status === 200) {
+            this.props.history.push({
+              pathname: '/user',
+              data: [res.data.item]
+            }); //functions as redirect
+        } else {
+            const error = new Error(res.error);
+            throw error;
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Error finding user');
+    });
+};
 
     deleteOne = (event) => {
       event.preventDefault();
@@ -243,12 +280,40 @@ export default class Dashboard extends Component {
 
           <br></br>
           <form onSubmit={this.findOne}>
-            <h1>search for one post</h1>
+            <h1>get one post</h1>
             <input
               type="text"
               name="id"
               placeholder="Enter id"
               value={this.state.id}
+              onChange={this.handleInputChange}
+              required
+            />
+            <input type="submit" value="Submit"/>
+          </form>
+
+          <br></br>
+          <form onSubmit={this.deleteOne}>
+            <h1>get one post</h1>
+            <input
+              type="text"
+              name="deleteId"
+              placeholder="Enter id to delete"
+              value={this.state.deleteId}
+              onChange={this.handleInputChange}
+              required
+            />
+            <input type="submit" value="Submit"/>
+          </form>
+
+          <br></br>
+          <form onSubmit={this.findOneUser}>
+            <h1>get one user profile</h1>
+            <input
+              type="text"
+              name="singleUsername"
+              placeholder="Enter username"
+              value={this.state.singleUsername}
               onChange={this.handleInputChange}
               required
             />

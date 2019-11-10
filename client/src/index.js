@@ -10,11 +10,16 @@ import Verify from './verify';
 import Display from './display';
 import Post from './post';
 import Dashboard from './dashboard';
+import Profile from  './profile'
+import FollowerOrFollowing from './followerOrFollowingList'
 
 const routing = (
     <Router>
       <div>
         <Route path="/" component={App} />
+        <Route path="/user" component={Profile} />
+        <Route path="/user/followers" component={FollowerOrFollowing} />
+        <Route path="/user/following" component={FollowerOrFollowing} />
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />

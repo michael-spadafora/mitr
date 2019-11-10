@@ -24,4 +24,4 @@ class FollowerOrFollowingDisplay extends React.Component {
       )
     }
   }
-export default Display
+export default FollowerOrFollowingDisplay
