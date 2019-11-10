@@ -5,7 +5,7 @@ class Post extends React.Component {
     super(props)
     console.log("post props:" + props)
     this.state = {
-        email: props.email,
+        email: props.location.email,
       followers: props.followers,
       following: props.following,
     }
