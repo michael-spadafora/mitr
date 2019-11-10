@@ -104,7 +104,7 @@ export default class Dashboard extends Component {
     deleteOne = (event) => {
       event.preventDefault();
       console.log("get id: " + this.state.id)
-      let url = 'http://130.245.168.250/api/item/' + this.state.id
+      let url = 'http://130.245.168.250/api/item/' + this.state.deleteId
       axios.delete(url, 
       {
         withCredentials: true,
@@ -294,7 +294,7 @@ export default class Dashboard extends Component {
 
           <br></br>
           <form onSubmit={this.deleteOne}>
-            <h1>get one post</h1>
+            <h1>delete one post</h1>
             <input
               type="text"
               name="deleteId"
@@ -335,7 +335,7 @@ export default class Dashboard extends Component {
           </form>
 
           <form onSubmit={this.viewUserFollowing}>
-            <h1>view user followers</h1>
+            <h1>view user following</h1>
             <input
               type="text"
               name="userFollowing"
