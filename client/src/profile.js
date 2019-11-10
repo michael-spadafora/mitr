@@ -6,8 +6,8 @@ class Post extends React.Component {
     console.log("post props:" + props)
     this.state = {
         email: props.location.email,
-      followers: props.followers,
-      following: props.following,
+      followers: props.location.followers,
+      following: props.location.following,
     }
   } 
     render() {
