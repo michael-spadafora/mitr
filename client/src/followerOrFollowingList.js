@@ -17,7 +17,7 @@ class FollowerOrFollowingDisplay extends React.Component {
         <div>
             <h1>list of users {this.state.type} {this.state.username}</h1>
         {this.state.userList.map((userName) => {
-          return <div>  userName </div>;
+          return <div>  {userName} </div>;
         })}
       </div>
 
