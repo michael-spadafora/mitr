@@ -111,7 +111,7 @@ export default class Dashboard extends Component {
 
 viewUserFollowing = (event) => {
   event.preventDefault();
-  let url = 'http://130.245.168.250/api/user/following'
+  let url = 'http://130.245.168.250/api/user/following/' + this.state.userFollowing
   axios.get(url, 
   {
     username: this.state.userFollowing,
@@ -146,7 +146,7 @@ viewUserFollowing = (event) => {
 
 viewUserFollowers = (event) => {
   event.preventDefault();
-  let url = 'http://130.245.168.250/api/user/followers'
+  let url = 'http://130.245.168.250/api/user/followers/' + this.state.userFollowers
   axios.get(url, 
   {
     username: this.state.userFollowers,
