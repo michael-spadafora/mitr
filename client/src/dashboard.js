@@ -89,6 +89,7 @@ export default class Dashboard extends Component {
     .then(res => {
         console.log(res)
         if (res.status === 200 || res.status === 304) {
+          console.log(res.data)
           
             this.props.history.push({
               pathname: '/user',
