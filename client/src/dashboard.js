@@ -25,6 +25,9 @@ export default class Dashboard extends Component {
         //delete id
         deleteId: '',
 
+        //follow id
+        followUsername: '',
+
         //enter one username 
         singleUsername: '',
 
@@ -314,6 +317,20 @@ export default class Dashboard extends Component {
               name="singleUsername"
               placeholder="Enter username"
               value={this.state.singleUsername}
+              onChange={this.handleInputChange}
+              required
+            />
+            <input type="submit" value="Submit"/>
+          </form>
+
+          <br></br>
+          <form onSubmit={this.findOneUser}>
+            <h1>follow user by username</h1>
+            <input
+              type="text"
+              name="followUsername"
+              placeholder="Enter username to follow"
+              value={this.state.followUsername}
               onChange={this.handleInputChange}
               required
             />
