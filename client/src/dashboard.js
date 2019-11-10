@@ -130,7 +130,7 @@ viewUserFollowing = (event) => {
             pathname: '/following',
             username: this.state.userFollowing,
             type: "following",
-            users: res.data.users
+            userList: res.data.users
 
           }); //functions as redirect
       } else {
@@ -166,7 +166,7 @@ viewUserFollowers = (event) => {
             pathname: '/followers',
             username: this.state.userFollowing,
             type: "followers",
-            users: res.data.users
+            userList: res.data.users
 
           }); //functions as redirect
       } else {
