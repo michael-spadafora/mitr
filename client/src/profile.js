@@ -5,7 +5,7 @@ class Post extends React.Component {
     super(props)
     console.log("post props:" + props)
     this.state = {
-      username: props.username,
+        email: props.email,
       followers: props.followers,
       following: props.following,
     }
@@ -13,7 +13,7 @@ class Post extends React.Component {
     render() {
       return (
       <div>
-        <h1>Username: {this.state.username} </h1>
+        <h1>email: {this.state.email} </h1>
         <br/>
         <h1>number of followers: {this.state.followers} </h1>
         <br/>

@@ -91,6 +91,7 @@ export default class Dashboard extends Component {
         if (res.status === 200) {
             this.props.history.push({
               pathname: '/user',
+              email: res.email,
               followers: res.data.followers,
               following: res.data.following,
 
