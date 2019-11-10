@@ -134,6 +134,34 @@ export default class Dashboard extends Component {
       });
   };
 
+  follow = (event) => {
+    event.preventDefault();
+    let url = 'http://130.245.168.250/api/follow'
+    axios.post(url, 
+    {
+        //search
+        username: this.state.followUsername,
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }, {withCredentials: true})
+    .then(res => {
+        if (res.status === 200) {
+            this.props.history.push({
+              pathname: '/dashboard',
+              message: "successfully followed user"
+            }); //functions as redirect
+        } else {
+            const error = new Error(res.error);
+            throw error;
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert('Error searching');
+    });
+};
+
     search = (event) => {
         event.preventDefault();
         let url = 'http://130.245.168.250/api/search'
@@ -324,7 +352,7 @@ export default class Dashboard extends Component {
           </form>
 
           <br></br>
-          <form onSubmit={this.findOneUser}>
+          <form onSubmit={this.followUser}>
             <h1>follow user by username</h1>
             <input
               type="text"
